@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cedar Creek Media</title>
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: #f9f9f9;
+      padding: 2.5rem 1rem;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 80px;
+    }
+
+    .logo-container {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      height: 80px;
+    }
+
+    /* Hamburger Styles */
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .hamburger .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: #333;
+    }
+
+    .nav-list {
+      list-style-type: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-list li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .nav-list li a:hover {
+      color: #000;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      background: url('images/ccm-header-image.png') no-repeat center center;
+      background-size: cover;
+      padding-top: 200px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .hero-content {
+      text-align: left;
+    }
+
+    .hero-content h1 {
+      font-size: 3.8rem;
+      margin-bottom: 1rem;
+      font-weight: 550;
+    }
+
+    .hero-content p {
+      font-size: 2rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background-color: #da9165;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background-color: #d66f00;
+    }
+
+    /* ABOUT SECTION */
+    .about {
+      padding: 4rem 3rem;
+      text-align: center;
+      background-color: #f9f9f9;
+      scroll-margin-top: 120px;
+    }
+
+    .about h2 {
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .about-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6rem;
+    }
+
+    .card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 2rem;
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    /* WHY CHOOSE SECTION */
+    .why-choose {
+      padding: 4rem 2rem;
+      background-color: #fff;
+      text-align: center;
+      scroll-margin-top: 120px;
+    }
+
+    .why-choose h2 {
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .why-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .why-card {
+      background-color: #fafafa;
+      border-radius: 8px;
+      max-width: 400px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .why-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .why-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    /* CAMPAIGN SECTION */
+    .campaign-section {
+      background-color: #f9f9f9;
+      padding: 4rem 3rem;
+      color: #333;
+      font-family: sans-serif;
+      scroll-margin-top: 120px;
+    }
+
+    .campaign-section h2 {
+      text-align: center;
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .campaign-details {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .campaign-details h3 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .campaign-details p {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 2rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* APPOINTMENT SECTION */
+    .appointment-section {
+      background-color: #fff;
+      padding: 8rem 6rem;
+      color: #333;
+      font-family: sans-serif;
+    }
+
+    .appointment-section h2 {
+      text-align: center;
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .appointment-details {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .appointment-details h3 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .appointment-details p {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    /* FAQ SECTION */
+    .faq-section {
+      padding: 4rem 2rem;
+      background-color: #f9f9f9;
+      font-family: sans-serif;
+      color: #333;
+      scroll-margin-top: 120px;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+      margin: 0;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-size: 1.35rem;
+      font-weight: 500;
+      list-style: none;
+      outline: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "▼";
+      float: right;
+      transition: transform 0.3s;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(-180deg);
+    }
+
+    .faq-item p {
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 4rem 2rem;
+      background-color: #fff;
+      text-align: center;
+      font-family: sans-serif;
+      scroll-margin-top: 120px;
+    }
+
+    .contact-section h2 {
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .form-container {
+      background-color: #f9f9f9;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-group label span {
+      color: red;
+      font-weight: normal;
+      margin-left: 0.25rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group textarea {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 0.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .checkbox-group a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      background-color: #da9165;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #d66f00;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background-color: #f9f9f9;
+      padding: 2rem 1rem;
+      font-family: sans-serif;
+      color: #333;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .footer-col h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .footer-col p {
+      margin: 0.5rem 0 0;
+      line-height: 1.4;
+    }
+
+    .footer-col:nth-child(2) {
+      text-align: center;
+    }
+
+    .footer-col:nth-child(3) {
+      text-align: right;
+    }
+
+    .footer-links {
+      list-style-type: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #014b47;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .footer-links a:hover {
+      color: #012f2c;
+    }
+
+    .footer-col a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 1024px) {
+      /* Header adjustments */
+      .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo-container {
+        position: static;
+        transform: none;
+      }
+      /* Show hamburger */
+      .hamburger {
+        display: block;
+      }
+      /* Hide navigation list by default */
+      .nav-list {
+        flex-direction: column;
+        gap: 1rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #f9f9f9;
+        padding: 1rem;
+        text-align: center;
+      }
+      /* Display nav list when toggled */
+      .nav-list.active {
+        display: flex;
+      }
+      /* Adjust hero text size */
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+      /* Stack cards in About & Why Choose sections */
+      .about-cards,
+      .why-cards {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      /* Footer grid becomes single column; center the links */
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      /* Make first & last name fields stack vertically */
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER SECTION -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Container -->
+      <div class="logo-container">
+        <a href="#top">
+          <img src="images/ccm-logo.jpg" alt="Cedar Creek Media Logo" class="logo" />
+        </a>
+      </div>
+      <!-- Hamburger Button -->
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <!-- Navigation -->
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#why-choose">Why Us</a></li>
+          <li><a href="#campaigns">Campaigns</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1>Revolutionize Your Follow Up Efforts</h1>
+        <p>
+          We help businesses by delivering exceptional services through innovative solutions, technology, and expert agents.
+        </p>
+        <a href="#contact" class="hero-btn">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ABOUT SECTION -->
+    <section class="about">
+      <section id="about" class="about">
+        <h2>About Cedar Creek Media</h2>
+        <div class="about-cards">
+          <!-- Card 1 -->
+          <div class="card">
+            <img src="images/ccm-about-our-mission.png" alt="Our Mission" />
+            <h3>Our Mission</h3>
+            <p>
+              At Cedar Creek Media, our mission is to provide exceptional service to our clients.
+              We strive to go above and beyond in every interaction with our customers, ensuring their satisfaction.
+            </p>
+          </div>
+      
+          <!-- Card 2 -->
+          <div class="card">
+            <img src="images/ccm-about-our-team.png" alt="Our Team" />
+            <h3>Our Team</h3>
+            <p>
+              Our team at Cedar Creek Media consists of highly trained US-based professionals dedicated to providing the best possible service to our clients. 
+              We work together to ensure that every customer receives personalized attention and support.
+            </p>
+          </div>
+      
+          <!-- Card 3 -->
+          <div class="card">
+            <img src="images/ccm-about-our-services.png" alt="Our Services" />
+            <h3>Our Services</h3>
+            <p>
+              At Cedar Creek Media, we offer a wide range of services to meet the needs of our clients. 
+              Whether you need help with prospect engagement, customer service, or sales, we have the expertise to deliver results.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+      
+    <section class="why-choose">
+      <section id="why-choose" class="why-choose">
+        <h2>Why Choose Cedar Creek Media</h2>
+        <div class="why-cards">
+          <!-- Card 1 -->
+          <div class="why-card">
+            <img src="images/ccm-why-us-optimized-campaigns.png" alt="Optimized Campaigns" />
+            <h3>Optimized Campaigns</h3>
+            <p>
+              Throughout our extensive experience, we have successfully executed thousands of follow-up campaigns, refining a process that not only delivers top-tier service but is also cost-effective, and yields exceptional results for you and your clients.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="why-card">
+            <img src="images/ccm-why-us-advanced-reporting.png" alt="Advanced Reporting" />
+            <h3>Advanced Reporting</h3>
+            <p>
+              Our advanced reporting tools allow you to track key metrics, such as call volume, average handle time, and customer satisfaction.
+              This data helps you identify areas of improvement and make informed business decisions.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="why-card">
+            <img src="images/ccm-why-us-multilingual-support.png" alt="Multilingual Support" />
+            <h3>Multilingual Support</h3>
+            <p>
+              We understand that your customers come from different parts of the world and may speak different languages.
+              That's why we offer multilingual support to cater to your diverse customer base.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>  
+      
+    <section class="campaign-section">
+      <section id="campaigns" class="campaign-section">
+        <h2>Standard Loan Officer Campaign</h2>
+        <div class="campaign-details">
+          <!-- Annual Reviews -->
+          <h3>Annual reviews</h3>
+          <p>
+            We schedule appointments for you with your past clients to generate new purchase, cash-out refinance loans, and referrals from your existing database.
+            Some of what you'll discover on these calls: Moving-up, downsizing, investment property, vacation home, friend or relative looking to purchase a home, etc.
+          </p>
+          <!-- Pre-approval Follow Up -->
+          <h3>Pre-approval follow up</h3>
+          <p>
+            We call once a week to check in and see how the home shopping is going.
+            Then 90 days from the date you pulled credit, we set an appointment for you to re-issue a new pre-approval.
+          </p>
+          <!-- Virtual Coffee Appointments -->
+          <h3>Virtual coffee appointments with referral partners</h3>
+          <p>
+            We call your current referral partners or partners you are courting and set virtual coffee appointments for you.
+          </p>
+          <!-- Footnote -->
+          <p class="footnote">
+            Products and services available for individuals and enterprise
+          </p>
+        </div>
+      </section>
+    </section>
+      
+    <section class="appointment-section">
+      <h2>Appointment Setting and Follow-Up</h2>
+      <div class="appointment-details">
+        <!-- Representing Your Brand -->
+        <h3>Representing Your Brand</h3>
+        <p>
+          Our customer service representatives are friendly and approachable.
+          We believe in treating your customers with the respect and kindness they deserve.
+        </p>
+        <!-- Personalized Solutions -->
+        <h3>Personalized Solutions</h3>
+        <p>
+          At Cedar Creek Media Customer Service, we understand that every customer is unique.
+          That’s why we offer personalized solutions that are tailored to your specific needs. 
+          We work with you to find the best possible solution for your unique situation.
+        </p>
+        <!-- Multi-Channel Support -->
+        <h3>Multi-Channel Support</h3>
+        <p>
+          We offer support through a variety of channels, including phone, email, and live chat.
+          No matter how you prefer to communicate, we’ve got you covered.
+        </p>
+        <!-- Transparent Pricing -->
+        <h3>Transparent Pricing</h3>
+        <p>
+          We believe in transparency when it comes to pricing.
+          We offer competitive rates and never charge hidden fees.
+          You can trust us to provide high-quality service at an
+          affordable price.
+        </p>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <section id="faq" class="faq-section">
+        <h2>FAQs</h2>
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <details class="faq-item">
+            <summary>What are your call center hours?</summary>
+            <p>
+              Our call center is open Monday to Friday from 9:00am to 12:00am EST.
+            </p>
+          </details>
+          <!-- FAQ 2 -->
+          <details class="faq-item">
+            <summary>How can I reach your call center?</summary>
+            <p>
+              You can reach our call center by dialing our toll-free number at 1-888-731-7292.
+            </p>
+          </details>
+          <!-- FAQ 3 -->
+          <details class="faq-item">
+            <summary>What services do you offer?</summary>
+            <p>
+              We offer customer follow-up, customer support, sales support, and sales services for various industries.
+            </p>
+          </details>
+        </div>
+      </section>
+    </section>
+      
+    <section class="contact-section">
+      <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="form-container">
+          <form action="/submit" method="post">
+            <!-- Name Fields -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span>*</span></label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span>*</span></label>
+                <input type="text" id="lastName" name="lastName" required />
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email <span>*</span></label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <!-- Phone -->
+            <div class="form-group">
+              <label for="phone">Phone <span>*</span></label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+            <!-- Checkbox / Opt-In -->
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="optIn" name="optIn" required />
+              <label for="optIn">
+                I agree to receive SMS updates and offers from Cedar Creek Media.
+                Messaging frequency may vary. Msg &amp; data rates may apply. Reply STOP to opt out. HELP for support.
+                <a href="cedarcreekmedia-privacy_policy.html">Privacy Policy</a> and <a href="cedarcreekmedia-terms_and_conditions.html">Terms of Service</a>.
+              </label>
+            </div>
+            <!-- Company Name -->
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" name="companyName" />
+            </div>
+            <!-- Message -->
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Send</button>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <!-- Left Column: Brand Info -->
+      <div class="footer-col">
+        <h3>Cedar Creek Media</h3>
+        <p>&copy; 2025 Cedar Creek Media - All Rights Reserved</p>
+      </div>
+      <!-- Center Column: Location -->
+      <div class="footer-col">
+        <h3>Location</h3>
+        <p>
+          New Jersey, United<br />
+          888-737-7292<br />
+          <a href="mailto:info@cedarcreek.media">info@cedarcreek.media</a>
+        </p>
+      </div>
+      <!-- Right Column: Policy Links -->
+      <div class="footer-col">
+        <ul class="footer-links">
+          <li><a href="cedarcreekmedia-privacy_policy.html">Privacy Policy</a></li>
+          <li><a href="cedarcreekmedia-terms_and_conditions.html">Terms and Conditions</a></li>
+          <li><a href="cedarcreekmedia-sms_compliance_policy.html">SMS Compliance Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer> 
+
+  <!-- JavaScript for Hamburger Toggle -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
